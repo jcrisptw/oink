@@ -17,7 +17,8 @@ describe "Oink::Middleware configuration" do
   context "instruments options" do
     before do
       @log_output = StringIO.new
-      Hodel3000CompliantLogger.stub(:new => Hodel3000CompliantLogger.new(@log_output))
+      # TODO fix
+      #Hodel3000CompliantLogger.stub(:new => Hodel3000CompliantLogger.new(@log_output))
       Oink::Instrumentation::MemorySnapshot.stub(:memory => 4092)
     end
 

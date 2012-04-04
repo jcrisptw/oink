@@ -22,7 +22,8 @@ describe Oink::Middleware do
   end
 
   let(:log_output)  { StringIO.new }
-  let(:logger)      { Hodel3000CompliantLogger.new(log_output) }
+  # TODO fix
+  #let(:logger)      { Hodel3000CompliantLogger.new(log_output) }
   let(:app)         { Oink::Middleware.new(SampleApplication.new, :logger => logger) }
 
   before do

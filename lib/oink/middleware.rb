@@ -1,4 +1,3 @@
-require 'hodel_3000_compliant_logger'
 require 'oink/utils/hash_utils'
 require 'oink/instrumentation'
 
@@ -7,7 +6,8 @@ module Oink
 
     def initialize(app, options = {})
       @app         = app
-      @logger      = options[:logger] || Hodel3000CompliantLogger.new("log/oink.log")
+      @logger      = options[:logger]
+      raise 'logger not initialized' if @logger.nil?
       @instruments = options[:instruments] ? Array(options[:instruments]) : [:memory, :activerecord]
 
       Oink.extend_active_record! if @instruments.include?(:activerecord)
