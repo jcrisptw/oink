@@ -4,7 +4,7 @@ module Oink
 
       FORMATS = %w[verbose short-summary summary]
       FORMAT_ALIASES = { "v" => "verbose", "ss" => "short-summary", "s" => "summary" }
-      LOG_FORMAT_REGEX = /^(\w+\s+\d{1,2} \d{2}:\d{2}:\d{2})/
+      LOG_FORMAT_REGEX = /(.*)(Oink|Memory usage|Instantiation Breakdown)/
 
       def initialize(input, threshold, options = {})
         @inputs = Array(input)

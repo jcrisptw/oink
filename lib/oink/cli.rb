@@ -11,7 +11,7 @@ module Oink
     end
 
     def process
-      options = { :format => :short_summary, :type => :memory }
+      options = { :format => :verbose, :type => :memory }
 
       op = OptionParser.new do |opts|
         opts.banner = "Usage: oink [options] files"
@@ -58,7 +58,14 @@ module Oink
 
       files = get_file_listing(@args)
 
-      handles = files.map { |f| File.open(f) }
+      handles = files.map do |path| 
+        reversed = File.new(path + "_asc", "w+")
+        File.open(path) do |original| # reverse lines thanks to splunk reversing order
+          original.lines.reverse_each {|line| reversed.puts(line)}
+        end
+        reversed.seek(0)
+        reversed
+      end
 
       if options[:type] == :memory
 
